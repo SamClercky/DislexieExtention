@@ -1,13 +1,24 @@
 {
   "manifest_version": 2,
- 
+
   "name": "Dislexic Extention",
-  "version": "0.1.0",
-  "description": "Lateral blog post demo extension",
- 
+  "description": "Extention to help people with dyslexi",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
   "content_scripts": [{
     "css": ["styles.css"],
-    "matches": ["http*"]
-  }]
- 
+    "js": ["iIndexedDb.js", "screen.js"],
+    "matches": ["<all_urls>"]
+  }],
+  "web_accessible_resources":[
+    "OpenDyslexic.otf"
+  ],
+  "content_security_policy": "default-src: *"
 }
