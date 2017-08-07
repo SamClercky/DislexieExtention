@@ -9,12 +9,12 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "activeTab",
+    "tabs",
     "storage"
   ],
   "content_scripts": [{
     "css": ["styles.css"],
-    "js": ["iIndexedDb.js", "screen.js"],
+    "js": ["iStorage.js", "iContentClient.js", "screen.js"],
     "matches": ["<all_urls>"]
   }],
   "web_accessible_resources":[
