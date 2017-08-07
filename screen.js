@@ -2,8 +2,8 @@ var c = new Client();
 var db = new Db();
 var styleElements = [];
 var prefabStyle = {
-    "font": '*, html, body, h1, h2, h3, h4, h5, h6, p, span, div, code{font-family: "OpenDyslexic" !important;}',
-    "color": 'p:hover, span:hover, code:hover {background: {0} !important;}'
+    "font": '*, html, body, h1, h2, h3, h4, h5, h6, p, span, div, code{font-family: "OpenDyslexic" !important; line-height: 150%;} code,pre{font-family: OpenDyslexicMono !important;}',
+    "color": 'p:hover, li:hover, span:hover, code:hover {background: {0} !important;}'
 }
 
 init();

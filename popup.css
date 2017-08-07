@@ -1,23 +1,28 @@
-meter, table, button {
-    display: block;
+body {
+    font-family: OpenDyslexic;
+    text-align: center;
+}
+#options {
+    min-width: 500px;
+    margin: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 10px;
+}
+#wrapper {
     width: 100%;
-    margin-bottom: 10px;
 }
 input {
-    float: left;
+    float: right;
 }
 .input {
     width: 20%;
 }
 .text {
     width: 80%;
+    text-align: left;
 }
-table {
-    border-bottom: solid #999 2px;
-}
-tr:last-child {
-    border-bottom: none;
-}
-body {
-    width: 300px;
+tr:hover {
+    border-radius: 5px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.02);
 }
