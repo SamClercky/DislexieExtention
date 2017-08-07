@@ -20,7 +20,6 @@ function init() {
     }
 }
 function onNewData(data) {
-    console.info("data reveived");
     changeLayoutItem(data.name, data.value);
 }
 function initLayout() {
@@ -52,6 +51,17 @@ function createLayoutItem(name, value) {
 
 function changeLayoutItem(name, value) {
     switch (name) {
+        case "dyslexic":
+            if (!toBool(value)) {
+                for (var item in styleElements) {
+                    styleElements[item].disabled = true;
+                }
+            } else {
+                for (var item in styleElements) {
+                    styleElements[item].disabled = false;
+                }
+            }
+            break;
         case "font":
             for (var item in styleElements) {
                 if (styleElements[item].getAttribute("data") == "font") {
@@ -77,7 +87,6 @@ function changeLayoutItem(name, value) {
                         break;
                     }
                 }
-                break;
             } else {
                 for (var item in styleElements) {
                     if (styleElements[item].getAttribute("data") == "color") {
@@ -86,6 +95,7 @@ function changeLayoutItem(name, value) {
                     }
                 }
             }
+            break;
         case "color":
             for (var item in styleElements) {
                 if (styleElements[item].getAttribute("data") == "color") {
