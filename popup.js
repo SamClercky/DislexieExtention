@@ -1,6 +1,6 @@
 // init file of popup
 var wrapper = document.getElementById("wrapper");
-var settings = [];
+var settings = {};
 var elementData = [];
 var db = new Db();
 
@@ -28,6 +28,7 @@ function createMenu() {
             for (item in obj) {
                 data = obj[item];
             }
+            settings[item] = data;
             elementData.push(addElement(data.label, data.value, data.type, item));
         })
     }
@@ -62,8 +63,15 @@ function addElement(name, value, type, id) {
 }
 
 function onChangeSet(evt) {
-    console.log ("data changed: " + evt.target.getAttribute("data") + ", " + evt.target.checked);
     var value = (evt.target.type == "checkbox") ? evt.target.checked : evt.target.value;
+    
+    // save changes
+    settings[evt.target.getAttribute("data")].value = value;
+
+    toggleData(
+        evt.target.getAttribute("data"),
+        value
+    );
     db.Set(
         evt.target.getAttribute("data"),
         value
@@ -95,5 +103,37 @@ function isBool(b) {
             return true;
         default:
             return false;
+    }
+}
+function toggleData(name, value){
+    if (name == "dyslexic") {
+        if (value == false) {
+            for (var i in elementData) {
+                if (elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "dyslexic") continue;
+                $(elementData[i]).slideUp();
+            }
+        } else {
+            for (var i in elementData) {
+                if (elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "dyslexic") continue;
+                if (
+                    !normalizeInput(settings["screen"].value) && 
+                    elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "color"
+                ) continue;
+                $(elementData[i]).slideDown();
+            }
+        }
+    }
+    if (name == "screen") {
+        if (value == false) {
+            for (var i in elementData) {
+                if (elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "color")
+                    $(elementData[i]).slideUp();
+            }
+        } else {
+            for (var i in elementData) {
+                if (elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "color")
+                    $(elementData[i]).slideDown();
+            }
+        }
     }
 }
