@@ -33,7 +33,7 @@ function createMenu() {
             }
             settings[item] = data;
             counter--;
-            elementData.push(addElement(data.label, data.value, data.type, item));
+            elementData.push(addElement(data.label, data.value, data.type, data.help, item));
         })
     }
     canStartToggle();
@@ -51,7 +51,7 @@ function canStartToggle() {
     }
 }
 
-function addElement(name, value, type, id) {
+function addElement(name, value, type, help, id) {
 
     var result = document.createElement("tr");
     var tdName = document.createElement("td");
@@ -60,6 +60,7 @@ function addElement(name, value, type, id) {
 
     // set name
     tdName.className = "text";
+    tdName.setAttribute("title", help);
     tdName.appendChild(document.createTextNode(name));
     // set input
     tdData.className = "input";

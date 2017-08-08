@@ -3,32 +3,38 @@ function Db() {
         dyslexic: {
             value: true,
             type: "checkbox",
-            label: "Enable corrections"
+            label: "Enable corrections",
+            help: "Toggle to activate or desactivate all"
         },
         font: {
             value: true,
             type: "checkbox",
-            label: "Enable OpenDyslexic"
+            label: "Enable OpenDyslexic",
+            help: "Toggles the OpenDyslexic font"
         },
         screen: {
             value: true,
             type: "checkbox",
-            label: "Enable special screen background"
+            label: "Enable special screen background",
+            help: "Toggles special background help"
         },
         color: {
             value: "#0000ff",
             type: "color",
-            label: "Backgroundcolor"
+            label: "Backgroundcolor",
+            help: "Color of the special background"
         },
         _opacity: {
             value: 0.5,
             type: "number",
-            label: ""
+            label: "",
+            help: ""
         },
         _firstRunPassed: {
             value: false,
             type: "checkbox",
-            label: ""
+            label: "",
+            help: ""
         }
     };
     this._dataName = "settings";
@@ -50,7 +56,7 @@ Db.prototype._init = function() {
     // cache this
     var $this = this;
     this.Get("_firstRunPassed", function(obj) {
-        if (obj["_firstRunPassed"] || obj["_firstRunPassed"].value) {
+        if (obj["_firstRunPassed"] != undefined) {
             $this.ready = true;
             return false;
         }
