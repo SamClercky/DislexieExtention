@@ -1,6 +1,7 @@
 var c = new Client();
 var db = new Db();
 var styleElements = [];
+var settings = {};
 var prefabStyle = {
     "font": '*, html, body, h1, h2, h3, h4, h5, h6, p, span, div, code{font-family: "OpenDyslexic" !important; line-height: 150%;} code,pre{font-family: OpenDyslexicMono !important;}',
     "color": 'p:hover, li:hover, span:hover, code:hover {background: {0} !important;}'
@@ -45,11 +46,13 @@ function createLayoutItem(name, value) {
         style.setAttribute("data", name);
         document.head.appendChild(style);
         styleElements.push(style);
-        changeLayoutItem(name, value)
     }
+    changeLayoutItem(name, value)
 }
 
 function changeLayoutItem(name, value) {
+    settings[name] = value;
+
     switch (name) {
         case "dyslexic":
             if (!toBool(value)) {
@@ -58,6 +61,14 @@ function changeLayoutItem(name, value) {
                 }
             } else {
                 for (var item in styleElements) {
+                    if (!settings["screen"] && styleElements[item].getAttribute("data") == "color") {
+                         styleElements[item].disabled = true;
+                         continue;
+                    }
+                    if (!settings["font"] && styleElements[item].getAttribute("data") == "font") {
+                         styleElements[item].disabled = true;
+                         continue;
+                    }
                     styleElements[item].disabled = false;
                 }
             }
@@ -70,6 +81,12 @@ function changeLayoutItem(name, value) {
                         styleElements[item].removeChild(styleElements[item].childNodes[0]);
                     styleElements[item].appendChild(entry);
 
+                    // check if dyslexic is enabled
+                    if (!settings["dyslexic"]) {
+                        styleElements[item].disabled = true;
+                        break;
+                    }
+                    // otherwise
                     if (toBool(value) == false) {
                         styleElements[item].disabled = true;
                     } else {
@@ -89,7 +106,7 @@ function changeLayoutItem(name, value) {
                 }
             } else {
                 for (var item in styleElements) {
-                    if (styleElements[item].getAttribute("data") == "color") {
+                    if ( settings["dyslexic"] && styleElements[item].getAttribute("data") == "color") {
                         styleElements[item].disabled = false;
                         break;
                     }
@@ -103,6 +120,8 @@ function changeLayoutItem(name, value) {
                     if (styleElements[item].childNodes[0])
                         styleElements[item].removeChild(styleElements[item].childNodes[0]);
                     styleElements[item].appendChild(entry);
+                    if (!settings["screen"] || !settings["dyslexic"])
+                        styleElements[item].disabled = true;
                     break;
                 }
             }
