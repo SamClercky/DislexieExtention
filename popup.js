@@ -3,6 +3,7 @@ var wrapper = document.getElementById("wrapper");
 var settings = {};
 var elementData = [];
 var db = new Db();
+var counter = 0;
 
 // update data after 1s
 console.log("Waiting for db ...");
@@ -19,9 +20,11 @@ function init() {
 }
 
 function createMenu() {
+
     for (var i in db.settings) {
         if (i.startsWith("_")) continue;
 
+        counter++;
         db.Get(i, function(obj) {
             var data = {};
             var item = {};
@@ -29,8 +32,22 @@ function createMenu() {
                 data = obj[item];
             }
             settings[item] = data;
+            counter--;
             elementData.push(addElement(data.label, data.value, data.type, item));
         })
+    }
+    canStartToggle();
+}
+function canStartToggle() {
+    if ( counter == 0) {
+        for(var i = elementData.length-1; i >= 0; i--) {
+            toggleData(
+                elementData[i].childNodes[1].childNodes[0].getAttribute("data"),
+                settings[elementData[i].childNodes[1].childNodes[0].getAttribute("data")].value
+            );
+        }
+    } else {
+        setTimeout(canStartToggle, 100);
     }
 }
 
