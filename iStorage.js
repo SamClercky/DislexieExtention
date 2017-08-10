@@ -19,7 +19,7 @@ function Db() {
             help: "Toggles special background help"
         },
         color: {
-            value: "#0000ff",
+            value: "#00ecff",
             type: "color",
             label: "Backgroundcolor",
             help: "Color of the special background"
