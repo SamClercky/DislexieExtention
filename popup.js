@@ -39,7 +39,7 @@ function createMenu() {
             }
             settings[item] = data;
             counter--;
-            elementData.push(addElement(data.label, data.value, data.type, data.help, item));
+            elementData.push(addElement(data.label, data.value, data.type, data.help, data.spacer, item));
         })
     }
     canStartToggle();
@@ -57,7 +57,7 @@ function canStartToggle() {
     }
 }
 
-function addElement(name, value, type, help, id) {
+function addElement(name, value, type, help, spacer, id) {
 
     var result = document.createElement("tr");
     var tdName = document.createElement("td");
@@ -67,6 +67,13 @@ function addElement(name, value, type, help, id) {
     // set name
     tdName.className = "text";
     tdName.setAttribute("title", help);
+    for (var i = 0; i < spacer; i++) {
+        /*var divSpacer = document.createElement("div");
+        divSpacer.className = "spacer";
+        divSpacer.appendChild(document.createTextNode(" "));*/
+        var divSpacer = document.createTextNode("\u00A0\u00A0");
+        tdName.appendChild(divSpacer);
+    }
     tdName.appendChild(document.createTextNode(name));
     // set input
     tdData.className = "input";
@@ -134,7 +141,7 @@ function toggleData(name, value){
         if (value == false) {
             for (var i in elementData) {
                 if (elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "dyslexic") continue;
-                $(elementData[i]).slideUp();
+                $(elementData[i]).slideUp({duration: 100});
             }
         } else {
             for (var i in elementData) {
@@ -143,7 +150,7 @@ function toggleData(name, value){
                     !normalizeInput(settings["screen"].value) && 
                     elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "color"
                 ) continue;
-                $(elementData[i]).slideDown();
+                $(elementData[i]).slideDown({duration: 100});
             }
         }
     }
@@ -151,12 +158,12 @@ function toggleData(name, value){
         if (value == false) {
             for (var i in elementData) {
                 if (elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "color")
-                    $(elementData[i]).slideUp();
+                    $(elementData[i]).slideUp({duration: 100});
             }
         } else {
             for (var i in elementData) {
                 if (elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "color")
-                    $(elementData[i]).slideDown();
+                    $(elementData[i]).slideDown({duration: 100});
             }
         }
     }

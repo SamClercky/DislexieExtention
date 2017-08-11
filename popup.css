@@ -44,3 +44,7 @@ tr:hover {
     padding: 10px;
     background: rgba(0, 0, 0, 0.02);
 }
+.spacer {
+    height: 100%;
+    margin-left: 10px;
+}

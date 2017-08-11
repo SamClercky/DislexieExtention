@@ -3,38 +3,44 @@ function Db() {
         dyslexic: {
             value: true,
             type: "checkbox",
-            label: "Enable corrections",
-            help: "Toggle to activate or desactivate all"
+            label: "Activate dyslexic extension",
+            help: "Activate or desactivate all functions",
+            spacer: 0
         },
         font: {
             value: true,
             type: "checkbox",
-            label: "Enable OpenDyslexic",
-            help: "Toggles the OpenDyslexic font"
+            label: "Activate OpenDyslexic",
+            help: "Activate the OpenDyslexic font",
+            spacer: 1
         },
         screen: {
             value: true,
             type: "checkbox",
-            label: "Enable special screen background",
-            help: "Toggles special background help"
+            label: "Activate backgroundcolor",
+            help: "Activate special background help",
+            spacer: 1
         },
         color: {
             value: "#00ecff",
             type: "color",
-            label: "Backgroundcolor",
-            help: "Color of the special background"
+            label: "Choose backgroundcolor",
+            help: "Color of special background",
+            spacer: 2
         },
         _opacity: {
             value: 0.5,
             type: "number",
             label: "",
-            help: ""
+            help: "",
+            spacer: 0
         },
         _firstRunPassed: {
             value: false,
             type: "checkbox",
             label: "",
-            help: ""
+            help: "",
+            spacer: 0
         }
     };
     this._dataName = "settings";
