@@ -14,6 +14,12 @@ function init() {
     if (db.ready) {
         console.log("Db started, Init menu");
         createMenu();
+
+        // enable links
+        $('a').on('click', function(){
+            chrome.tabs.create({url: $(this).attr('href')});
+            return false;
+        });
     } else {
         setTimeout(init, 250);
     }
