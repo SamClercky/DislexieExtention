@@ -116,7 +116,7 @@ function onChangeSet(evt) {
 
 function normalizeInput(raw) {
     if (isNumeric(raw)) {
-        return parseInt(raw);
+        return parseFloat(raw);
     } else if (isBool(raw)) {
         return String(raw) == "true";
     } else {
@@ -148,7 +148,10 @@ function toggleData(name, value){
                 if (elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "dyslexic") continue;
                 if (
                     !normalizeInput(settings["screen"].value) && 
-                    elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "color"
+                    (
+                        elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "color" ||
+                        elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "opacity"
+                    )
                 ) continue;
                 $(elementData[i]).slideDown({duration: 100});
             }
@@ -157,12 +160,14 @@ function toggleData(name, value){
     if (name == "screen") {
         if (value == false) {
             for (var i in elementData) {
-                if (elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "color")
+                if (elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "color" ||
+                    elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "opacity")
                     $(elementData[i]).slideUp({duration: 100});
             }
         } else {
             for (var i in elementData) {
-                if (elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "color")
+                if (elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "color" ||
+                    elementData[i].childNodes[1].childNodes[0].getAttribute("data") == "opacity")
                     $(elementData[i]).slideDown({duration: 100});
             }
         }

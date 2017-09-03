@@ -161,3 +161,23 @@ String.prototype.format = function (args) {
     });
 };
 String.prototype.format.regex = new RegExp("{-?[0-9]+}", "g");
+
+function GetPos(elem) {
+    var body = document.getElementsByName("body")[0];
+    var pos = {}
+    pos.x = elem.offsetLeft;
+    pos.y = elem.offsetTop;
+
+    while (elem.offsetParent) {
+        var parent = elem.offsetParent;
+        pos.x += parent.offsetLeft;
+        pos.y += parent.offsetTop;
+
+        if (elem == body)
+            break;
+        else
+            elem = elem.offsetParent;
+    }
+
+    return pos;
+}

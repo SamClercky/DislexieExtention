@@ -28,12 +28,12 @@ function Db() {
             help: "Color of special background",
             spacer: 2
         },
-        _opacity: {
+        opacity: {
             value: 0.5,
             type: "number",
-            label: "",
-            help: "",
-            spacer: 0
+            label: "Opacity",
+            help: "Sets the opacity of the special background",
+            spacer: 2
         },
         _firstRunPassed: {
             value: false,
