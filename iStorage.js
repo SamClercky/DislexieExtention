@@ -17,22 +17,22 @@ function Db() {
         screen: {
             value: true,
             type: "checkbox",
-            label: "Activate backgroundcolor",
-            help: "Activate special background help",
+            label: "Activate overlay",
+            help: "Activate special overlay help",
             spacer: 1
         },
         color: {
             value: "#00ecff",
             type: "color",
-            label: "Choose backgroundcolor",
-            help: "Color of special background",
+            label: "Choose overlaycolor",
+            help: "Color of special overlay",
             spacer: 2
         },
         opacity: {
             value: 0.5,
             type: "range",
             label: "Opacity",
-            help: "Sets the opacity of the special background",
+            help: "Sets the opacity of the overlay",
             spacer: 2
         },
         _firstRunPassed: {
