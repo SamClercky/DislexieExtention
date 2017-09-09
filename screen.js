@@ -2,9 +2,12 @@ var c = new Client();
 var db = new Db();
 var styleElements = [];
 var settings = {};
+var cscreen = new CScreen();
+var enableBackground = false;
 var prefabStyle = {
     "font": '*, html, body, h1, h2, h3, h4, h5, h6, p, span, div, code{font-family: "OpenDyslexic" !important; line-height: 150%;} code,pre{font-family: OpenDyslexicMono !important;}',
-    "color": 'p:hover, li:hover, span:hover, code:hover {background: {0} !important;}'
+    "color": "#" + cscreen.id + ' {background: {0} !important;}',
+    "opacity": "#" + cscreen.id + ' {opacity: {0} !important;}'
 }
 
 init();
@@ -16,6 +19,7 @@ function init() {
         c.onRespons(onNewData);
 
         initLayout();
+        initBackground();
     } else {
         setTimeout(init, 250);
     }
@@ -23,6 +27,27 @@ function init() {
 function onNewData(data) {
     changeLayoutItem(data.name, data.value);
 }
+// init background
+function initBackground() {
+    const elementen = document.querySelectorAll("p,li,span,code,dd,dt,dl,th,td");
+    elementen.forEach((e) => {
+        e.onmouseover = (e) => {
+            if (!enableBackground) return;
+            console.log("in");
+
+            cscreen.setVisible(true);
+            const pos = GetPos(e.target);
+
+            cscreen.X = pos.X;
+            cscreen.Y = pos.Y;
+            cscreen.width = pos.Width;
+            cscreen.height = pos.Height;
+
+            cscreen.resetPos();
+        }
+    })
+}
+
 function initLayout() {
 
     for (var i in db.settings) {
@@ -59,18 +84,23 @@ function changeLayoutItem(name, value) {
                 for (var item in styleElements) {
                     styleElements[item].disabled = true;
                 }
+                enableBackground = false;
             } else {
                 for (var item in styleElements) {
                     if (!settings["screen"] && styleElements[item].getAttribute("data") == "color") {
-                         styleElements[item].disabled = true;
-                         continue;
+                        styleElements[item].disabled = true;
+                        continue;
                     }
                     if (!settings["font"] && styleElements[item].getAttribute("data") == "font") {
-                         styleElements[item].disabled = true;
-                         continue;
+                        styleElements[item].disabled = true;
+                        continue;
                     }
                     styleElements[item].disabled = false;
                 }
+                if (settings["screen"])
+                    enableBackground = true;
+                else
+                    enableBackground = false;
             }
             break;
         case "font":
@@ -104,13 +134,15 @@ function changeLayoutItem(name, value) {
                         break;
                     }
                 }
+                enableBackground = false;
             } else {
                 for (var item in styleElements) {
-                    if ( settings["dyslexic"] && styleElements[item].getAttribute("data") == "color") {
+                    if (settings["dyslexic"] && styleElements[item].getAttribute("data") == "color") {
                         styleElements[item].disabled = false;
                         break;
                     }
                 }
+                enableBackground = true;
             }
             break;
         case "color":
@@ -125,6 +157,20 @@ function changeLayoutItem(name, value) {
                     break;
                 }
             }
+            break;
+        case "opacity":
+            for (var item in styleElements) {
+                if (styleElements[item].getAttribute("data") == "opacity") {
+                    var entry = document.createTextNode(prefabStyle["opacity"].format([value]));
+                    if (styleElements[item].childNodes[0])
+                        styleElements[item].removeChild(styleElements[item].childNodes[0]);
+                    styleElements[item].appendChild(entry);
+                    if (!settings["screen"] || !settings["dyslexic"])
+                        styleElements[item].disabled = true;
+                    break;
+                }
+            }
+            break;
     }
 }
 function toBool(b) {
@@ -165,13 +211,15 @@ String.prototype.format.regex = new RegExp("{-?[0-9]+}", "g");
 function GetPos(elem) {
     var body = document.getElementsByName("body")[0];
     var pos = {}
-    pos.x = elem.offsetLeft;
-    pos.y = elem.offsetTop;
+    pos.X = elem.offsetLeft;
+    pos.Y = elem.offsetTop;
+    pos.Width = elem.offsetWidth;
+    pos.Height = elem.offsetHeight;
 
     while (elem.offsetParent) {
         var parent = elem.offsetParent;
-        pos.x += parent.offsetLeft;
-        pos.y += parent.offsetTop;
+        pos.X += parent.offsetLeft;
+        pos.Y += parent.offsetTop;
 
         if (elem == body)
             break;

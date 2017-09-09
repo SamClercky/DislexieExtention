@@ -15,7 +15,7 @@
   ],
   "content_scripts": [{
     "css": ["styles.css"],
-    "js": ["iStorage.js", "iContentClient.js", "screen.js"],
+    "js": ["iStorage.js", "iContentClient.js", "cscreen.js", "screen.js"],
     "matches": ["<all_urls>"]
   }],
   "web_accessible_resources":[

@@ -68,9 +68,6 @@ function addElement(name, value, type, help, spacer, id) {
     tdName.className = "text";
     tdName.setAttribute("title", help);
     for (var i = 0; i < spacer; i++) {
-        /*var divSpacer = document.createElement("div");
-        divSpacer.className = "spacer";
-        divSpacer.appendChild(document.createTextNode(" "));*/
         var divSpacer = document.createTextNode("\u00A0\u00A0");
         tdName.appendChild(divSpacer);
     }
@@ -78,10 +75,16 @@ function addElement(name, value, type, help, spacer, id) {
     // set input
     tdData.className = "input";
     dataInput.type = type;
-    if (type == "checkbox")
+    if (type == "range") {
+        dataInput.setAttribute("max", 100);
+        dataInput.setAttribute("min", 0);
+
+        dataInput.value = normalizeInput(value*100);
+    } else if (type == "checkbox") {
         dataInput.checked = normalizeInput(value);
-    else
+    } else {
         dataInput.value = normalizeInput(value);
+    }
     dataInput.setAttribute("data", id);
     dataInput.onchange = onChangeSet;
     // merge everything
@@ -95,6 +98,7 @@ function addElement(name, value, type, help, spacer, id) {
 
 function onChangeSet(evt) {
     var value = (evt.target.type == "checkbox") ? evt.target.checked : evt.target.value;
+    value = (evt.target.type == "range") ? evt.target.value/100 : evt.target.value;
     
     // save changes
     settings[evt.target.getAttribute("data")].value = value;

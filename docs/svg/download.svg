@@ -1191,21 +1191,17 @@ v01GRYZ5nn756wiTF+vEfc3oKG7bvU/a1DkM/mPnveoWKCg6Y0aBUZyPj8d43mZQCzcHvz31/9k=
        height="154.83403"
        x="-1.1139139"
        y="897.5282" />
-    <g
-       id="g4398"
-       transform="translate(142.47906,-6.3012486)">
-      <path
-         transform="matrix(1.2244726,0,-0.23006181,0.36667606,131.66159,659.69218)"
-         style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:8.39999962;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4378)"
-         d="m 193.51672,348.82384 0,385.45898 -87.00586,0.28906 110.94727,131.90039 110.94531,131.90043 109.12109,-132.63285 109.11914,-132.63281 -96.92773,0.32226 0,-384.60546 -256.19922,0 z"
-         id="path4344"
-         inkscape:connector-curvature="0" />
-      <path
-         inkscape:connector-curvature="0"
-         id="rect4136"
-         d="m 193.51672,348.82384 0,385.45898 -87.00586,0.28906 110.94727,131.90039 110.94531,131.90043 109.12109,-132.63285 109.11914,-132.63281 -96.92773,0.32226 0,-384.60546 -256.19922,0 z"
-         style="opacity:1;fill:#3cab3b;fill-opacity:1;stroke:#004a00;stroke-width:8.39999962;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    </g>
+    <path
+       inkscape:connector-curvature="0"
+       id="path4344"
+       d="m 193.51672,348.82384 0,385.45898 -87.00586,0.28906 110.94727,131.90039 110.94531,131.90043 109.12109,-132.63285 109.11914,-132.63281 -96.92773,0.32226 0,-384.60546 -256.19922,0 z"
+       style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:8.39999962;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4378)"
+       transform="matrix(1.2244726,0,-0.23006181,0.36667606,274.14065,653.39093)" />
+    <path
+       style="opacity:1;fill:#3cab3b;fill-opacity:1;stroke:#004a00;stroke-width:8.39999962;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 335.99578,342.52259 0,385.45898 -87.00586,0.28906 110.94727,131.90039 110.94531,131.90043 109.12109,-132.63285 109.11914,-132.63281 -96.92773,0.32226 0,-384.60546 -256.19922,0 z"
+       id="rect4136"
+       inkscape:connector-curvature="0" />
     <g
        id="g4393"
        transform="matrix(1.1685956,0,0,1.1685956,-173.56738,-115.971)">

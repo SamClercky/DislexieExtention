@@ -30,7 +30,7 @@ function Db() {
         },
         opacity: {
             value: 0.5,
-            type: "number",
+            type: "range",
             label: "Opacity",
             help: "Sets the opacity of the special background",
             spacer: 2
