@@ -1,0 +1,1 @@
+function Server(){}Server.prototype.Send=function(e,n){console.log("Sending data..."),chrome.tabs.query({},function(o){var a={name:e,value:n};for(var r in o)chrome.tabs.sendMessage(o[r].id,a);console.log("Data sent")})};

@@ -1,0 +1,34 @@
+{
+  "name": "dyxitool",
+  "version": "1.0.0",
+  "description": "A extension for chrome that can help people with dyslexia on the web",
+  "main": "gulpfile.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamClercky/Dyxitool.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "medical",
+    "dyslexic"
+  ],
+  "author": "SamClercky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamClercky/Dyxitool/issues"
+  },
+  "homepage": "https://github.com/SamClercky/Dyxitool#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.8.0",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-uglify": "^3.0.0",
+    "pump": "^1.0.2"
+  }
+}

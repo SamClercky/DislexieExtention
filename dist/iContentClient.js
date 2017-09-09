@@ -1,0 +1,1 @@
+function Client(){}Client.prototype.onRespons=function(n){chrome.runtime.onMessage.addListener(function(e,o,t){n(e)})};

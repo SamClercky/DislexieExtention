@@ -30,9 +30,9 @@ function onNewData(data) {
 }
 // init background
 function initBackground() {
-    const elementen = document.querySelectorAll("p,li,span,code,dd,dt,dl,th,td");
-    elementen.forEach((e) => {
-        e.onmouseover = (e) => {
+    var elementen = document.querySelectorAll("p,li,span,code,dd,dt,dl,th,td");
+    elementen.forEach(function(e) {
+        e.onmouseover = function(e) {
             if (!enableBackground) {
                 // reset pos
                 cscreen.setVisible(false);
@@ -41,7 +41,7 @@ function initBackground() {
             console.log("in");
 
             cscreen.setVisible(true);
-            const pos = GetPos(e.target);
+            var pos = GetPos(e.target);
 
             cscreen.X = pos.X;
             cscreen.Y = pos.Y;

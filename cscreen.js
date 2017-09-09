@@ -38,7 +38,7 @@ CScreen.prototype.add = function () {
 }
 
 CScreen.prototype._genId = function () {
-    let id;
+    var id = "";
     do {
         id = "uid" + (new Date()).getMilliseconds() + Math.floor(Math.random() * 1000);
     } while (document.getElementById(id));
