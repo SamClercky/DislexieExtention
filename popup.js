@@ -98,7 +98,7 @@ function addElement(name, value, type, help, spacer, id) {
 
 function onChangeSet(evt) {
     var value = (evt.target.type == "checkbox") ? evt.target.checked : evt.target.value;
-    value = (evt.target.type == "range") ? evt.target.value/100 : evt.target.value;
+    value = (evt.target.type == "range") ? evt.target.value/100 : value;
     
     // save changes
     settings[evt.target.getAttribute("data")].value = value;

@@ -17,6 +17,7 @@ CScreen.prototype.build = function () {
 
     this.setVisible(true);
     this._object.style.position = "absolute";
+    this._object.style.zIndex = 1000;
     this.resetPos();
 
     // cache this

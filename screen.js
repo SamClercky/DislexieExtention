@@ -7,7 +7,8 @@ var enableBackground = false;
 var prefabStyle = {
     "font": '*, html, body, h1, h2, h3, h4, h5, h6, p, span, div, code{font-family: "OpenDyslexic" !important; line-height: 150%;} code,pre{font-family: OpenDyslexicMono !important;}',
     "color": "#" + cscreen.id + ' {background: {0} !important;}',
-    "opacity": "#" + cscreen.id + ' {opacity: {0} !important;}'
+    "opacity": "#" + cscreen.id + ' {opacity: {0} !important;}',
+    "markup": "p, span, div, code { text-align: justify !important;text-justify: inter-word !important;background: white !important;color: #333 !important;line-height: 1.5 !important;font-size: 1em !important;}"
 }
 
 init();
@@ -32,7 +33,11 @@ function initBackground() {
     const elementen = document.querySelectorAll("p,li,span,code,dd,dt,dl,th,td");
     elementen.forEach((e) => {
         e.onmouseover = (e) => {
-            if (!enableBackground) return;
+            if (!enableBackground) {
+                // reset pos
+                cscreen.setVisible(false);
+                return;
+            }
             console.log("in");
 
             cscreen.setVisible(true);
@@ -95,6 +100,10 @@ function changeLayoutItem(name, value) {
                         styleElements[item].disabled = true;
                         continue;
                     }
+                    if (!settings["markup"] && styleElements[item].getAttribute("data") == "markup") {
+                        styleElements[item].disabled = true;
+                        continue;
+                    }
                     styleElements[item].disabled = false;
                 }
                 if (settings["screen"])
@@ -107,6 +116,29 @@ function changeLayoutItem(name, value) {
             for (var item in styleElements) {
                 if (styleElements[item].getAttribute("data") == "font") {
                     var entry = document.createTextNode(prefabStyle["font"]);
+                    if (styleElements[item].childNodes[0])
+                        styleElements[item].removeChild(styleElements[item].childNodes[0]);
+                    styleElements[item].appendChild(entry);
+
+                    // check if dyslexic is enabled
+                    if (!settings["dyslexic"]) {
+                        styleElements[item].disabled = true;
+                        break;
+                    }
+                    // otherwise
+                    if (toBool(value) == false) {
+                        styleElements[item].disabled = true;
+                    } else {
+                        styleElements[item].disabled = false;
+                    }
+                    break;
+                }
+            }
+            break;
+        case "markup":
+            for (var item in styleElements) {
+                if (styleElements[item].getAttribute("data") == "markup") {
+                    var entry = document.createTextNode(prefabStyle["markup"]);
                     if (styleElements[item].childNodes[0])
                         styleElements[item].removeChild(styleElements[item].childNodes[0]);
                     styleElements[item].appendChild(entry);
@@ -139,10 +171,10 @@ function changeLayoutItem(name, value) {
                 for (var item in styleElements) {
                     if (settings["dyslexic"] && styleElements[item].getAttribute("data") == "color") {
                         styleElements[item].disabled = false;
+                        enableBackground = true;
                         break;
                     }
                 }
-                enableBackground = true;
             }
             break;
         case "color":

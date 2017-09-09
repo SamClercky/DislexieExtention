@@ -11,7 +11,14 @@ function Db() {
             value: true,
             type: "checkbox",
             label: "Activate OpenDyslexic",
-            help: "Activate the OpenDyslexic font",
+            help: "Activate the OpenDyslexic font (some icons will not be shown)",
+            spacer: 1
+        },
+        markup: {
+            value: false,
+            type: "checkbox",
+            label: "Force easy reading mark-up",
+            help: "Force the site to make improvements in the layout (this can possibly break the site layout)",
             spacer: 1
         },
         screen: {
